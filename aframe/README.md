@@ -1,6 +1,9 @@
 # Variant Launch Aframe example
 How to use the Variant Launch SDK with Aframe. Adapted from the example at [https://glitch.com/edit/#!/xr-spinosaurus?path=index.html:1:0](https://glitch.com/edit/#!/xr-spinosaurus?path=index.html:1:0). Note iOS Launch viewer will only work with a [valid SSL certificate](https://launch.variant3d.com/docs/development-guide)
 
+## Glitch
+
+This example is available as a glitch here: https://glitch.com/edit/#!/strong-caring-door . Remember to use the preview URL on device so you don't end up with the editor UI!
 
 ## Installation
 
