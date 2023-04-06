@@ -1,7 +1,13 @@
 # Variant Launch WebXR Examples
 
 ## ThreeJS
- [ThreeJS README](threejs/README.md)
+
+[ThreeJS README](threejs/README.md)
+
+## PlayCanvas
+
+[PlayCanvas README](playcanvas/README.md)
 
 ## Aframe
+
 [Aframe README](aframe/README.md)
