@@ -28,14 +28,14 @@
     </script>
 
     <!-- import variant launch -->
-    <script src="https://cdn.launchar.app/sdk/variant-launch.min.js"></script>
+    <script src="https://sdk.launchar.app/variant-launch.min.js"></script>
 
     <script type="module">
       import * as THREE from "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.149.0/three.module.js";
       import { ARButton } from "three/addons/webxr/ARButton.js";
       import { TubePainter } from "three/addons/misc/TubePainter.js";
 
-      window.addEventListener("vlaunch-initialized", (e) => {              
+      window.addEventListener("vlaunch-initialized", (e) => {
         if (e.detail.webXRStatus === "supported") {
           //WebXR is supported
           document.body.appendChild(

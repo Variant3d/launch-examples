@@ -25,7 +25,11 @@ find . -type f \( -iname "*.html" -o -iname "*.js" -o -iname "*.jsx" -o -iname "
 do
     if grep -q "YOUR_SDK_KEY" "$file"; then
         echo "Found YOUR_SDK_KEY in $file"
-        sed -i "s/YOUR_SDK_KEY/\"$api_key\"/g" "$file"
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            sed -i "" "s/YOUR_SDK_KEY/\"$api_key\"/g" "$file"
+        else
+            sed -i "s/YOUR_SDK_KEY/\"$api_key\"/g" "$file"
+        fi
     fi
 done
 
