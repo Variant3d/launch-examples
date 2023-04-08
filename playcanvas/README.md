@@ -1,12 +1,12 @@
 # Variant Launch PlayCanvas example
 
-How to use the Variant Launch SDK with PlayCanvas. Adapted from the [https://playcanvas.com/project/984974/overview/webxr-ar-starter-kit](WebXR Starter Kit template). Note iOS Launch viewer will only work with a [valid SSL certificate](https://launch.variant3d.com/docs/development-guide)
+How to use the Variant Launch SDK with PlayCanvas. Adapted from the [WebXR Starter Kit template](https://playcanvas.com/project/984974/overview/webxr-ar-starter-kit]). Note iOS Launch viewer will only work with a [valid SSL certificate](https://launch.variant3d.com/docs/development-guide)
 
 ## Setup
 
-1.  Fork this project from the project dashboard at [https://playcanvas.com/project/1053688/overview/variant-launch-webxr-starter-kit](https://playcanvas.com/project/1053688/overview/variant-launch-webxr-starter-kit)
+1.  Fork this project from the project dashboard at [https://playcanvas.com/project/1053688/overview/variant-launch-webxr-starter-kit]
 2.  Add your SDK key. Find the Variant Launch button script under `/PlayCanvas/Scripts/VariantLaunchInit.js`. Search for `VLaunch.init` and replace with your key.
-3.  Be sure to add the preview domain (usually `playcanv.as`) to your authorized domains on [https://launchar.app](https://launchar.app)
+3.  Be sure to add the preview domain (usually `playcanv.as`) to your authorized domains on [https://launchar.app]
 4.  When sharing published builds hosted on playcanvas, add `/e` to the start of the URL path to avoid using iframes, which will stop Variant Launch from working. For example if your public build address is `https://playcanv.as/p/AOYF3YyG/` use `https://playcanv.as/e/p/AOYF3YyG/`
 
 ## Troubleshooting
