@@ -5,9 +5,9 @@ How to use the Variant Launch SDK with PlayCanvas. Adapted from the [https://pla
 ## Setup
 
 1.  Fork this project from the project dashboard at [https://playcanvas.com/project/1053688/overview/variant-launch-webxr-starter-kit](https://playcanvas.com/project/1053688/overview/variant-launch-webxr-starter-kit)
-2.  Add your SDK key. Find the Variant Launch button script under `/PlayCanvas/UI/VariantLaunchArButton.js`. Search for `VLaunch.init` and replace with your key.
+2.  Add your SDK key. Find the Variant Launch button script under `/PlayCanvas/Scripts/VariantLaunchInit.js`. Search for `VLaunch.init` and replace with your key.
 3.  Be sure to add the preview domain (usually `playcanv.as`) to your authorized domains on [https://launchar.app](https://launchar.app)
-4.  When sharing published builds hosted on playcanvas, add `/e` to the start of the URL path to avoid using iframes, which will stop Variant Launch from working. For example if your build address is `https://playcanv.as/p/AOYF3YyG/` use `https://playcanv.as/e/p/AOYF3YyG/`
+4.  When sharing published builds hosted on playcanvas, add `/e` to the start of the URL path to avoid using iframes, which will stop Variant Launch from working. For example if your public build address is `https://playcanv.as/p/AOYF3YyG/` use `https://playcanv.as/e/p/AOYF3YyG/`
 
 ## Troubleshooting
 
