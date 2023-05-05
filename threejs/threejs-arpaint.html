@@ -28,33 +28,16 @@
     </script>
 
     <!-- import variant launch -->
-    <script src="https://sdk.launchar.app/variant-launch.min.js"></script>
-
+    <script src="https://launchar.app/sdk/v1?key=YOUR_SDK_KEY&redirect=true"></script>
     <script type="module">
       import * as THREE from "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.149.0/three.module.js";
       import { ARButton } from "three/addons/webxr/ARButton.js";
       import { TubePainter } from "three/addons/misc/TubePainter.js";
 
-      window.addEventListener("vlaunch-initialized", (e) => {
-        if (e.detail.webXRStatus === "supported") {
-          //WebXR is supported
-          document.body.appendChild(
-            ARButton.createButton(renderer, { requiredFeatures: ["hit-test"] })
-          );
-          return;
-        }
-
-        if (e.detail.launchRequired) {
-          //We need to use launch to get WebXR
-          window.location.href = e.detail.launchUrl;
-          return;
-        }
-
-        //if we reach here, there's no webxr available on this platform at all
-      });
-
-      //initialise the Launch SDK. We will receive "vlaunch-initialized" event when it is ready
-      window.VLaunch.init({ key: YOUR_SDK_KEY });
+      // Add our WebXR immersive-ar button
+      document.body.appendChild(
+        ARButton.createButton(renderer, { requiredFeatures: ["hit-test"] })
+      );
 
       /*
        *

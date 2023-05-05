@@ -1,29 +1,29 @@
 # Variant Launch PlayCanvas example
 
-How to use the Variant Launch SDK with PlayCanvas. Adapted from the [WebXR Starter Kit template](https://playcanvas.com/project/984974/overview/webxr-ar-starter-kit]). Note iOS Launch viewer will only work with a [valid SSL certificate](https://launch.variant3d.com/docs/development-guide)
+How to use the Variant Launch SDK with PlayCanvas. Adapted from the [https://playcanvas.com/project/984974/overview/webxr-ar-starter-kit](WebXR Starter Kit template). Note iOS Launch viewer will only work with a [valid SSL certificate](https://launch.variant3d.com/docs/development-guide)
 
 ## Setup
 
-1.  Fork this project from the project dashboard at https://playcanvas.com/project/1053688/overview/variant-launch-webxr-starter-kit
-2.  Add your SDK key. Find the Variant Launch button script under `/PlayCanvas/Scripts/VariantLaunchInit.js`. Search for `VLaunch.init` and replace with your key.
-3.  Be sure to add the preview domain (usually `playcanv.as`) to your authorized domains on https://launchar.app
-4.  When sharing published builds hosted on playcanvas, add `/e` to the start of the URL path to avoid using iframes, which will stop Variant Launch from working. For example if your public build address is `https://playcanv.as/p/AOYF3YyG/` use `https://playcanv.as/e/p/AOYF3YyG/`
+1.  **Fork this project** from the project dashboard at [https://playcanvas.com/project/1053688/overview/variant-launch-webxr-starter-kit](https://playcanvas.com/project/1053688/overview/variant-launch-webxr-starter-kit)
+2.  **Add your SDK key.** Click the settings icon (cog), then on the right find the tab for "External Scripts". Add your SDK key to the script url, replacing the existing demo key or YOUR_SDK_KEY text.
+3.  Be sure to **add the preview domain** (usually `playcanv.as`) to your authorized domains on [https://launchar.app](https://launchar.app)
+4.  When sharing published builds hosted on playcanvas, add `/e` to the start of the URL path to avoid using iframes, which will stop Variant Launch from working. For example if your build address is `https://playcanv.as/p/AOYF3YyG/` use `https://playcanv.as/e/p/AOYF3YyG/`
 
 ## Troubleshooting
 
 ### Can't see camera feed
 
-Please ensure your body and html elements are set to transparent while running the AR experience. The camera view is rendered under the webpage, so there must be visibility 'through' the canvas to the camera. For this reason you should also have 'Transparent Canvas' enabled in render settings, and must not clear the camera with a solid color as it will draw over the camera.
+Please ensure your body and html elements are set to transparent while running the AR experience. The camera view is rendered under the webpage, so there must be visibility 'through' the canvas to the camera. For this reason you should also have 'Transparent Canvas' enabled in render settings, and must not clear the camera with a solid color as it will draw over the camera view.
 
 ### Page reloads multiple times on load
 
 Refer to #4 in the setup section. If hosting on playcanv.as the url must start with `https://playcanv.as/e/p/`.
 
-### Below is the original WebXR Starter Kit README:
+# Below is the original WebXR Starter Kit README:
 
 ## WebXR Augmented Reality Starter Kit
 
-# Overview
+### Overview
 
 An application to get you started in working with Augmented Reality using WebXR in PlayCanvas. This project features:
 

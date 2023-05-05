@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>Babylon.js sample code</title>
+
+    <!-- Variant -->
+    <script src="https://launchar.app/sdk/v1?key=YOUR_SDK_KEY&redirect=true"></script>
+    <!-- Babylon.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
+    <script src="https://assets.babylonjs.com/generated/Assets.js"></script>
+    <script src="https://preview.babylonjs.com/ammo.js"></script>
+    <script src="https://preview.babylonjs.com/cannon.js"></script>
+    <script src="https://preview.babylonjs.com/Oimo.js"></script>
+    <script src="https://preview.babylonjs.com/earcut.min.js"></script>
+    <script src="https://preview.babylonjs.com/babylon.js"></script>
+    <script src="https://preview.babylonjs.com/materialsLibrary/babylonjs.materials.min.js"></script>
+    <script src="https://preview.babylonjs.com/proceduralTexturesLibrary/babylonjs.proceduralTextures.min.js"></script>
+    <script src="https://preview.babylonjs.com/postProcessesLibrary/babylonjs.postProcess.min.js"></script>
+    <script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.js"></script>
+    <script src="https://preview.babylonjs.com/serializers/babylonjs.serializers.min.js"></script>
+    <script src="https://preview.babylonjs.com/gui/babylon.gui.min.js"></script>
+    <script src="https://preview.babylonjs.com/inspector/babylon.inspector.bundle.js"></script>
+
+    <script>
+      var engine = null;
+      var scene = null;
+      function startExperience() {
+        var canvas = document.getElementById("renderCanvas");
+
+        var startRenderLoop = function (engine, canvas) {
+          engine.runRenderLoop(function () {
+            if (sceneToRender && sceneToRender.activeCamera) {
+              sceneToRender.render();
+            }
+          });
+        };
+
+        var sceneToRender = null;
+        var createDefaultEngine = function () {
+          return new BABYLON.Engine(canvas, true, {
+            preserveDrawingBuffer: true,
+            stencil: true,
+            disableWebGL2Support: false,
+          });
+        };
+        var createScene = async function () {
+          // This creates a basic Babylon Scene object (non-mesh)
+          var scene = new BABYLON.Scene(engine);
+
+          // This creates and positions a free camera (non-mesh)
+          var camera = new BABYLON.FreeCamera(
+            "camera1",
+            new BABYLON.Vector3(0, 1, -5),
+            scene
+          );
+
+          // This targets the camera to scene origin
+          camera.setTarget(BABYLON.Vector3.Zero());
+
+          // This attaches the camera to the canvas
+          camera.attachControl(canvas, true);
+
+          // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
+          var light = new BABYLON.HemisphericLight(
+            "light",
+            new BABYLON.Vector3(0, 1, 0),
+            scene
+          );
+
+          // Default intensity is 1. Let's dim the light a small amount
+          light.intensity = 0.7;
+
+          var xr = await scene.createDefaultXRExperienceAsync({
+            uiOptions: {
+              sessionMode: "immersive-ar",
+            },
+            optionalFeatures: true,
+          });
+
+          const fm = xr.baseExperience.featuresManager;
+
+          const xrTest = fm.enableFeature(BABYLON.WebXRHitTest, "latest");
+
+          const marker = BABYLON.MeshBuilder.CreateTorus("marker", {
+            diameter: 0.15,
+            thickness: 0.05,
+          });
+          marker.isVisible = false;
+          marker.rotationQuaternion = new BABYLON.Quaternion();
+
+          xrTest.onHitTestResultObservable.add((results) => {
+            if (results.length) {
+              marker.isVisible = true;
+              hitTest = results[0];
+              hitTest.transformationMatrix.decompose(
+                marker.scaling,
+                marker.rotationQuaternion,
+                marker.position
+              );
+            } else {
+              marker.isVisible = false;
+            }
+          });
+
+          return scene;
+        };
+        window.initFunction = async function () {
+          var asyncEngineCreation = async function () {
+            try {
+              return createDefaultEngine();
+            } catch (e) {
+              console.log(
+                "the available createEngine function failed. Creating the default engine instead"
+              );
+              return createDefaultEngine();
+            }
+          };
+
+          window.engine = await asyncEngineCreation();
+          if (!engine) throw "engine should not be null.";
+          startRenderLoop(engine, canvas);
+          window.scene = createScene();
+        };
+        initFunction().then(() => {
+          scene.then((returnedScene) => {
+            sceneToRender = returnedScene;
+          });
+        });
+
+        // Resize
+        window.addEventListener("resize", function () {
+          if (!engine) return;
+          engine.resize();
+        });
+      }
+
+      startExperience();
+    </script>
+    <style>
+      html,
+      body {
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      #renderCanvas {
+        width: 100%;
+        height: 100%;
+        touch-action: none;
+      }
+
+      .xr-button-overlay {
+        z-index: 11;
+        position: absolute;
+        right: 120px !important;
+        bottom: 120px !important;
+        height: 240px;
+        width: 330px;
+      }
+
+      .babylonVRicon {
+        height: 240px !important;
+        width: 330px !important;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="renderCanvas"></canvas>
+  </body>
+</html>

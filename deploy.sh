@@ -12,7 +12,6 @@ cp -r ./aframe "$dir"/build
 cp -r ./babylonJS "$dir"/build
 cp -r ./playcanvas "$dir"/build
 cp -r ./threejs "$dir"/build
-
 api_key="$LAUNCH_API_KEY"
 
 # Check if the LAUNCH_API_KEY environment variable is set
@@ -26,9 +25,9 @@ do
     if grep -q "YOUR_SDK_KEY" "$file"; then
         echo "Found YOUR_SDK_KEY in $file"
         if [[ "$OSTYPE" == "darwin"* ]]; then
-            sed -i "" "s/YOUR_SDK_KEY/\"$api_key\"/g" "$file"
+            sed -i "" "s/YOUR_SDK_KEY/$api_key/g" "$file"
         else
-            sed -i "s/YOUR_SDK_KEY/\"$api_key\"/g" "$file"
+            sed -i "s/YOUR_SDK_KEY/$api_key/g" "$file"
         fi
     fi
 done

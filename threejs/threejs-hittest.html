@@ -8,6 +8,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no"
     />
     <link type="text/css" rel="stylesheet" href="main.css" />
+    <script src="https://launchar.app/sdk/v1?key=YOUR_SDK_KEY&redirect=true"></script>
     <script
       async
       src="https://ga.jspm.io/npm:es-module-shims@1.5.17/dist/es-module-shims.js"
@@ -20,8 +21,6 @@
         }
       }
     </script>
-
-    <script src="https://sdk.launchar.app/variant-launch.min.js"></script>
 
     <script type="module">
       import * as THREE from "three";
@@ -42,7 +41,7 @@
       });
 
       //initialise the Launch SDK. We will receive "vlaunch-initialized" event when it is ready
-      window.VLaunch.init({ key: YOUR_SDK_KEY });
+      window.VLaunch.init({ key: "YOUR_SDK_KEY" });
 
       /*
        *
