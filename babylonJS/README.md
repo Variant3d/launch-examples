@@ -1,20 +1,14 @@
-# launch-threejs-example
+# Variant Launch BabylonJS Example
 
-How to use the Variant Launch SDK with the web's most popular 3D engine. Adapted from the examples at [https://threejs.org/examples/](https://threejs.org/examples/). Note iOS Launch viewer will only work with a [valid SSL certificate](https://launch.variant3d.com/docs/development-guide)
+How to use the Variant Launch SDK with BabylonJS. Note iOS Launch viewer will only work with a [valid SSL certificate](https://launch.variant3d.com/docs/development-guide)
 
 ## Installation
 
 1.  Clone or download this github repo
-2.  Add your SDK key in each example HTML file. Search for `YOUR_SDK_KEY` to find the `<script>` tag that requires your key as one of the url parameters.
+2.  Add your SDK key in index.html. Search for `YOUR_SDK_KEY` to find the `<script>` tag that requires your key as one of the url parameters.
 3.  Host the project on a server with a valid SSL (where the url begins with `https://` and the certificate is not self-signed).
 
-## Examples
-
-`threejs-arpaint.html` 'Painting' a mesh in the air when the user touches the screen.
-
-`threejs-hittest.html` Demonstrates the use of the [WebXR hit-test API](https://developer.mozilla.org/en-US/docs/Web/API/XRHitTestResult) to place cylinders on tracked planes.
-
-## Adding Launch to other threeJS projects
+## Adding Launch to other BabylonJS projects
 
 Add this script tag early in your `<head>`. It should run before your 3D engine code if you want WebXR support available when your other code runs.
 
