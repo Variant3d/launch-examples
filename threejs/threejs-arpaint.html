@@ -34,11 +34,6 @@
       import { ARButton } from "three/addons/webxr/ARButton.js";
       import { TubePainter } from "three/addons/misc/TubePainter.js";
 
-      // Add our WebXR immersive-ar button
-      document.body.appendChild(
-        ARButton.createButton(renderer, { requiredFeatures: ["hit-test"] })
-      );
-
       /*
        *
        * Below is the original threejs example from https://threejs.org/examples/webxr_ar_paint.html
@@ -75,7 +70,12 @@
         renderer.xr.enabled = true;
         container.appendChild(renderer.domElement);
 
-        //
+        // Add our WebXR immersive-ar button
+        document.body.appendChild(
+          ARButton.createButton(renderer, {
+            requiredFeatures: ["local", "hit-test"],
+          })
+        );
 
         // document.body.appendChild(ARButton.createButton(renderer));
 

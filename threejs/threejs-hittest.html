@@ -26,23 +26,6 @@
       import * as THREE from "three";
       import { ARButton } from "ARButton";
 
-      window.addEventListener("vlaunch-initialized", (e) => {
-        if (e.detail.webXRStatus === "supported") {
-          //WebXR is supported
-          document.body.appendChild(
-            ARButton.createButton(renderer, { requiredFeatures: ["hit-test"] })
-          );
-        } else if (e.detail.launchRequired) {
-          //We need to use launch to get WebXR
-          window.location.href = e.detail.launchUrl;
-        } else {
-          // no webxr available on this platform at all
-        }
-      });
-
-      //initialise the Launch SDK. We will receive "vlaunch-initialized" event when it is ready
-      window.VLaunch.init({ key: "YOUR_SDK_KEY" });
-
       /*
        *
        * Below is the original threejs example from https://threejs.org/examples/webxr_ar_hittest.html
@@ -86,13 +69,11 @@
         renderer.xr.enabled = true;
         container.appendChild(renderer.domElement);
 
-        //
-
-        /*
-  document.body.appendChild(
-    ARButton.createButton(renderer, { requiredFeatures: ["hit-test"] })
-  );
-  */
+        document.body.appendChild(
+          ARButton.createButton(renderer, {
+            requiredFeatures: ["local", "hit-test"],
+          })
+        );
 
         //
 
