@@ -2,7 +2,7 @@
 
 ## Glitch
 
-This example is available as a glitch here: https://glitch.com/edit/#!/strong-caring-door . Remember to use the 'preview URL' on device so you don't end up with the editor UI!
+This example is available as a glitch here: https://glitch.com/edit/#!/launch-aframe-demo . Remember to use the 'preview URL' on device so you don't end up with the editor UI!
 
 ## Adding Launch to Aframe scenes
 
