@@ -1,0 +1,24 @@
+{
+  "name": "launch-examples-babylonjs",
+  "private": false,
+  "license": "MIT",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "serve": "vite & cloudflared tunnel --url http://localhost:5173",
+    "build": "vite build",
+    "preview": "vite preview",
+    "website" : "vite build --base=/babylonJS/"
+  },
+  "devDependencies": {
+    "vite": "^4.3.9",
+    "cloudflared": "^0.4.0"
+  },
+  "dependencies": {
+    "@babylonjs/core": "^6.8.1",
+    "@babylonjs/loaders": "^6.8.1",
+    "open": "^9.1.0",
+    "qrcode": "^1.5.3"
+  }
+}

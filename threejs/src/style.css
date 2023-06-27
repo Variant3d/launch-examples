@@ -1,0 +1,121 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #777777;
+}
+
+body {
+  margin: 0;
+  background-color: #242424;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+#overlay{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 80vh;
+  justify-content: center;
+  align-items: center;
+}
+
+#instructions{
+  margin: auto;
+  flex-grow: 1;
+  display: none;
+  margin-top: 3rem;
+}
+
+#app {
+  max-width: 1280px;
+  flex-grow: 1;
+  min-height: 80vh;
+  min-width: 320px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index: 15;
+  
+}
+
+@keyframes circle {
+  from { transform: translateX(-50%) rotate(0deg) translateX(50px) rotate(0deg); }
+  to   { transform: translateX(-50%) rotate(360deg) translateX(50px) rotate(-360deg); }
+}
+
+@keyframes elongate {
+  from { transform: translateX(100px); }
+  to   { transform: translateX(-100px); }
+}
+
+#tracking-prompt {
+  position: absolute;
+  left: 50%;
+  bottom: 175px;
+  animation: elongate 2s infinite ease-in-out alternate;
+  display: none;
+}
+
+
+ #tracking-prompt > img {
+  animation: circle 4s linear infinite;
+}
+
+#qr-code{
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 0.1), 0 0.3rem 0.6rem rgba(0, 0, 0, 0.2);
+  margin-top: 2rem;
+}
+
+#ar-not-supported {
+  width:100%
+}
+
+#variant-logo {
+  border-radius: 0.3rem;
+}
+
+canvas {
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+  height:100%;
+  z-index: 1;
+}
+
+.xr-button-overlay{
+  z-index: 100 !important;
+}

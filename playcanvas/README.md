@@ -1,6 +1,6 @@
 # Variant Launch PlayCanvas example
 
-How to use the Variant Launch SDK with PlayCanvas. Adapted from the [https://playcanvas.com/project/984974/overview/webxr-ar-starter-kit](WebXR Starter Kit template). Note iOS Launch viewer will only work with a [valid SSL certificate](https://launch.variant3d.com/docs/development-guide)
+How to use the Variant Launch SDK with PlayCanvas. Note iOS Launch viewer will only work with a [valid SSL certificate](https://launch.variant3d.com/docs/development-guide)
 
 ## Setup
 
