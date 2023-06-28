@@ -11,7 +11,7 @@ How to use the Variant Launch SDK with the web's most popular 3D engine. Note iO
 ## Development
 
 - run `npm install` to install dependencies
-- run `npm run serve` to run a public server with Cloudflare SSL. You can find the randomly generated domain in the console output. It will look something like: https://frontier-richard-grammar-example.trycloudflare.com
+- run `npm run serve-public` to run a public server with Cloudflare SSL. You can find the randomly generated domain in the console output. It will look something like: https://frontier-richard-grammar-example.trycloudflare.com
 - Visit the URL on your device to begin testing
 
 ## Adding Launch to other threeJS projects
