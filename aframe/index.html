@@ -13,9 +13,9 @@
     <script src="https://launchar.app/sdk/v1?key=PgCkcRz0dyNiU3cWrOBw3PIB7cFYnuu8&redirect=true"></script>
 
 
-    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
-    <script src="https://unpkg.com/aframe-environment-component@1.3.2/dist/aframe-environment-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.5.x/dist/aframe-environment-component.min.js"></script>
 
     <script>
 
@@ -70,7 +70,9 @@
   </head>  
   <body>
 
-    <a-scene device-orientation-permission-ui="enabled: false"  webxr="requiredFeatures:hit-test,local-floor;referenceSpaceType:local-floor;">
+    <a-scene device-orientation-permission-ui="enabled: false"
+    webxr="requiredFeatures:hit-test,local-floor;referenceSpaceType:local-floor;"
+    xr-mode-ui="XRMode: ar">
       <a-assets timeout="30000">
         <!-- Model source: NASA -->
         <a-asset-item id="rover" src="https://cdn.glitch.global/3e1642bd-4578-49d6-890b-eb456e36ef26/marsrover.glb?v=1686714169557" response-type="arraybuffer"></a-asset-item>
@@ -129,11 +131,11 @@
       </p>
       
       <p>
-        Paste this Glitch's preview URL into your Variant Launch Code generator to get a url that works on Android or iOS.
+        Paste a hosted URL of this example into your Variant Launch Code generator to get a url that works on Android or iOS.
       </p>
       
       <p>
-        Powered by <a href="https://aframe.io/blog/aframe-v1.0.0/">A-Frame v1.0.0</a>.
+        Powered by <a href="https://aframe.io/blog/aframe-v1.7.0/">A-Frame v1.7.1</a>.
       </p>
     </div>
     <script>
