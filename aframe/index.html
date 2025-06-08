@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Variant Launch a-frame</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/style.css">
+    
+    <!-- IMPORTANT: PLACE YOUR SDK SCRIPT TAG BELOW IF FORKING  -->
+    
+    <script src="https://launchar.app/sdk/v1?key=PgCkcRz0dyNiU3cWrOBw3PIB7cFYnuu8&redirect=true"></script>
+
+
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.5.4/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.5.x/dist/aframe-environment-component.min.js"></script>
+
+    <script>
+
+      // Define a few custom components useful for AR mode. While these are somewhat reusable,
+      // I recommend checking if there are officially supported alternatives before copying
+      // these into new projects.
+    
+      // See also https://github.com/aframevr/aframe/pull/4356
+      AFRAME.registerComponent('hide-in-ar-mode', {
+        // Set this object invisible while in AR mode.
+        init: function () {
+          this.el.sceneEl.addEventListener('enter-vr', (ev) => {
+            this.wasVisible = this.el.getAttribute('visible');
+            if (this.el.sceneEl.is('ar-mode')) {
+              this.el.setAttribute('visible', false);
+            }
+          });
+          this.el.sceneEl.addEventListener('exit-vr', (ev) => {
+            if (this.wasVisible) this.el.setAttribute('visible', true);
+          });
+        }
+      });
+      
+      AFRAME.registerComponent('ar-shadows', {
+        // Swap an object's material to a transparent shadows-only material while
+        // in AR mode. Intended for use with a ground plane. The object is also
+        // set visible while in AR mode, this is useful if it's hidden in other
+        // modes due to them using a 3D environment.
+        schema: {
+          opacity: {default: 0.3}
+        },
+        init: function () {
+          this.el.sceneEl.addEventListener('enter-vr', (ev) => {
+            this.wasVisible = this.el.getAttribute('visible');
+            if (this.el.sceneEl.is('ar-mode')) {
+              this.savedMaterial = this.el.object3D.children[0].material;
+              this.el.object3D.children[0].material = new THREE.ShadowMaterial();
+              this.el.object3D.children[0].material.opacity = this.data.opacity;
+              this.el.setAttribute('visible', true);
+            }
+          });
+          this.el.sceneEl.addEventListener('exit-vr', (ev) => {
+            if (this.savedMaterial) {
+              this.el.object3D.children[0].material = this.savedMaterial;
+              this.savedMaterial = null;
+            }
+            if (!this.wasVisible) this.el.setAttribute('visible', false);
+          });
+        }
+      });    
+  </script>
+  </head>  
+  <body>
+
+    <a-scene device-orientation-permission-ui="enabled: false"
+    webxr="requiredFeatures:hit-test,local-floor;referenceSpaceType:local-floor;"
+    xr-mode-ui="XRMode: ar">
+      <a-assets timeout="30000">
+        <!-- Model source: NASA -->
+        <a-asset-item id="rover" src="https://cdn.glitch.global/3e1642bd-4578-49d6-890b-eb456e36ef26/marsrover.glb?v=1686714169557" response-type="arraybuffer"></a-asset-item>
+      </a-assets>
+
+      <a-camera position="0 1.2 6"></a-camera>
+      
+      <!-- Environment for 2D and VR viewing. It's auto-hidden in AR mode. -->
+      <a-entity environment="preset: forest; lighting: none; shadow: none; lightPosition: 0 2.15 0"
+                hide-in-ar-mode></a-entity>
+      
+      <a-entity id="model" position="-1 0 -3" scale="1 1 1" rotation="0 0 0">
+        <a-entity position="0 0 0" rotation="0 0 0"
+                  gltf-model="#rover"
+                  animation-mixer
+                  shadow="cast: true; receive: false"></a-entity>
+      </a-entity>  
+      
+      <a-entity light="type: ambient; intensity: 0.5;"></a-entity>
+      <a-light type="directional"
+               light="castShadow: true;
+                      shadowMapHeight: 1024;
+                      shadowMapWidth: 1024;
+                      shadowCameraLeft: -7;
+                      shadowCameraRight: 5;
+                      shadowCameraBottom: -5;
+                      shadowCameraTop: 5;"
+               id="light"
+               target="model"
+               position="-5 3 1.5"></a-light>
+
+      <!-- This shadow-receiving plane is only visible in AR mode. -->
+      <a-plane height="15" width="15" position="0 0 -3" rotation="-90 0 0"
+               shadow="receive: true"
+               ar-shadows="opacity: 0.3"
+               visible="false"></a-plane>
+    </a-scene>
+
+    <div id="text">
+      <h1>Variant Launch A-frame Demo</h1>
+    
+      <p>
+        Model: <a href="https://nasa3d.arc.nasa.gov/detail/curiosity-clean">Curiosity Rover</a> by NASA
+      
+      </p>
+      <p>
+        Size: <button id="btn_full">Full</button>
+        <button id="btn_half">1/2</button>
+        <button id="btn_quarter">1/4</button>
+      </p>
+      
+      <p>
+        This requires browser support for immersive-ar WebXR, e.g. an
+        <a href="https://developers.google.com/ar/discover/supported-devices">ARCore-compatible</a>
+        Android or an iOS device using <a href="https://launch.variant3d.com/">Variant Launch</a>      
+      </p>
+      
+      <p>
+        Paste a hosted URL of this example into your Variant Launch Code generator to get a url that works on Android or iOS.
+      </p>
+      
+      <p>
+        Powered by <a href="https://aframe.io/blog/aframe-v1.7.0/">A-Frame v1.7.1</a>.
+      </p>
+    </div>
+    <script>
+      function setSize(scale) {
+        document.getElementById('model').setAttribute('scale', {x: scale, y: scale, z: scale});
+      }
+      document.getElementById('btn_full').onclick = setSize.bind(this, 1);
+      document.getElementById('btn_half').onclick = setSize.bind(this, 0.5);
+      document.getElementById('btn_quarter').onclick = setSize.bind(this, 0.25);
+    </script>
+
+  </body>
+</html>

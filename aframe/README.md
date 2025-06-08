@@ -1,8 +1,9 @@
 # Variant Launch Aframe example
 
-## Glitch
+## How to run
 
-This example is available as a glitch here: https://glitch.com/edit/#!/launch-aframe-demo . Remember to use the 'preview URL' on device so you don't end up with the editor UI!
+* Use a local web server to host the project, such as `npm install -g http-server && http-server`
+* Use a cloudflared tunnel for mobile testing [see docs](https://launch.variant3d.com/docs/testing-on-launch-viewer), such as `cloudflared tunnel --url http://localhost:8080`
 
 ## Adding Launch to Aframe scenes
 
